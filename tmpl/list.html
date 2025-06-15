@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link href="style.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<title>!list_title!</title>
+</head>
+<body>
+
+<div id="head">
+	<h1>!list_title!</h1>
+</div>
+<div id="main">
+<div id="main-in">
+
+<div class="sub-ttl">
+	<span>■</span>
+	<strong>日次アクセス （!this_month!）</strong>
+</div>
+
+<div id="chart"></div>
+<script>
+var options = {
+	series: [{
+		name: '日次アクセス',
+		data: [!day_count!]
+	}],
+	chart: {
+		type: 'bar',
+		height: 350
+	},
+	dataLabels: {
+		enabled: true,
+		style: {
+			fontSize: '10px',
+			colors: ['#fff']
+		}
+	},
+	responsive: [{
+		breakpoint: 480,
+		options: {
+			legend: {
+				position: 'bottom',
+				offsetX: -10,
+				offsetY: 0
+			}
+		}
+	}],
+	xaxis: {
+		categories: [!day_categ!],
+	},
+	fill: {
+		opacity: 1
+	},
+	legend: {
+		position: 'right',
+		offsetX: 0,
+		offsetY: 50
+	}
+};
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
+</script>
+
+<div class="sub-ttl">
+	<span>■</span>
+	<strong>月次アクセス</strong>
+</div>
+
+<div id="chart-m"></div>
+<script>
+var options = {
+	series: [{
+		name: '月次アクセス',
+		data: [!mon_count!]
+	}],
+	chart: {
+		type: 'bar',
+		height: 'auto',
+	},
+	plotOptions: {
+		bar: {
+			borderRadius: 4,
+			horizontal: true,
+		}
+	},
+	dataLabels: {
+		enabled: true,
+		offsetX: -1,
+		style: {
+			fontSize: '10px',
+			colors: ['#fff']
+		}
+	},
+	xaxis: {
+		categories: [!mon_categ!],
+	},
+	colors:['#30b516']
+};
+var chart = new ApexCharts(document.querySelector("#chart-m"), options);
+chart.render();
+</script>
+
+</div>
+</div>
+</body>
+</html>
